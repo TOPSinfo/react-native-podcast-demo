@@ -35,12 +35,21 @@ const podcastReducer = (state = podcastState, action) => {
     return state
 }
 
+const playerReducer = (state = { selectedTrack: '' }, action) => {
+    switch (action.type) {
+        case 'SET TRACK':
+            return { ...state, selectedTrack: action.track }
+        default:
+            return state
+    }
+}
 
 const RootReducer = combineReducers({
     loading,
     connection,
     userReducer,
-    podcastReducer
+    podcastReducer,
+    playerReducer
 })
 
 export default RootReducer

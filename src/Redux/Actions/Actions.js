@@ -12,7 +12,15 @@ const connection = (isConnected) => {
     }
 }
 
+const setTrack = (track) => {
+    return {
+        type: 'SET TRACK',
+        track
+    }
+}
+
 export {
     loading,
-    connection
+    connection,
+    setTrack
 }

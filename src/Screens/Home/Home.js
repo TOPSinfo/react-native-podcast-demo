@@ -8,41 +8,34 @@ import {
 import VideoPlayer from '../../Components/VideoPlayer';
 import { colors } from '../../Utils/colors';
 import { FontSize } from '../../Utils/util';
-var RNFS = require('react-native-fs');
+let RNFS = require('react-native-fs');
 let absolutePath = RNFS.DocumentDirectoryPath;
 let filePath = `${absolutePath}/${Date.now()}.mp4`
 
 const Home = ({ navigation }) => {
 
-    const [videoUrl ,setVideoUrl] = useState('')
+    const [videoUrl, setVideoUrl] = useState('')
 
     const downloadFile = () => {
-       RNFS.downloadFile({
-            fromUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4',
+        RNFS.downloadFile({
+            //fromUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4',
+            fromUrl: 'https://file-examples.com/storage/fe5467a6a163010b197fb20/2017/04/file_example_MP4_1280_10MG.mp4',
             toFile: filePath,
             begin: (res) => {
-                console.log('begin',res)
+                console.log('begin', res)
             },
-           
+
             progress: async (res) => {
-               console.log('progress',res)
+                console.log('progress', res)
             },
-        }).promise.then((res)=>{
-            console.log('Res',filePath)
+        }).promise.then((res) => {
+            console.log('Res', filePath)
         })
     }
 
-    const readDocumentDirectory = () => {
-        RNFS.readDir(absolutePath).then((res)=>{
-            console.log('Directory Response',res)
-            setVideoUrl(res[0].path)
-        })
-    }
-
-    useEffect(()=>{
-       // downloadFile()
-      readDocumentDirectory()
-    },[])
+    useEffect(() => {
+        //downloadFile()
+    }, [])
     return (
         <View style={styles.mainContainer}>
             <SafeAreaView style={{ flex: 1 }}>

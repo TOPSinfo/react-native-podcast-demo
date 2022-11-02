@@ -3,18 +3,34 @@ import {
     StyleSheet,
     Text,
     View,
-    SafeAreaView
+    SafeAreaView,
+    TouchableOpacity
 } from 'react-native';
 import { colors } from '../../Utils/colors';
 import { FontSize } from '../../Utils/util';
 
 const Settings = ({ navigation }) => {
 
+    const onLogout = () => {
+        console.log('On Logout')
+    }
+
+    const onDownload = () => {
+        navigation.navigate('Downloads')
+    }
+
+    const option = (label, onPress) => {
+        return <TouchableOpacity onPress={onPress} style={styles.option}>
+            <Text style={styles.title}>{label}</Text>
+        </TouchableOpacity>
+    }
+
     return (
         <View style={styles.mainContainer}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.container1}>
-                    <Text style={styles.title}>Settings Screen</Text>
+                    {option('Downloads', onDownload)}
+                    {option('Logout', onLogout)}
                 </View>
             </SafeAreaView>
         </View>
@@ -27,17 +43,16 @@ const styles = StyleSheet.create({
         backgroundColor: colors.darkBlue
     },
     container1: {
-        flex: 0.8,
-        alignItems: 'center',
-        justifyContent: 'center'
+        flex: 1,
+        padding: 10
     },
-    container2: {
-        flex: 0.2,
-        padding: 15,
-        justifyContent: 'flex-end'
+    option: {
+        borderBottomWidth: 0.5,
+        borderColor: colors.white1,
+        padding: 15
     },
     title: {
-        fontSize: FontSize.giant,
+        fontSize: FontSize.medium,
         color: colors.white
     }
 });

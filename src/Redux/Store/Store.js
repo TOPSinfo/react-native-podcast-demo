@@ -8,7 +8,7 @@ const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
     timeout: 10000,
-    blacklist: ['loading']
+    blacklist: ['loading', 'playerReducer']
 }
 
 const persistedReducer = persistReducer(persistConfig, Reducers)
